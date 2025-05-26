@@ -234,8 +234,9 @@ sequences = seq_data(pre_data)
 Seq = sequences.map(split_input)
 batched_dataset = batch_data(Seq)
 
+file = 'https://github.com/UdhayaPrasad/CNLABS_INTERNSHIP/blob/main/CNLABS/epoch_200.keras'
 # Load model
-model = load_model("epoch_200.keras", compile=False)
+model = load_model(file, compile=False)
 
 # Example generation at startup
 #print(generate_text("Artificial Intelligence", gen_length=400, temperature=0.1))
