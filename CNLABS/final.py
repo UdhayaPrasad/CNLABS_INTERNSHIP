@@ -126,6 +126,7 @@ import numpy as np
 import wikipedia as wiki
 from tensorflow.data import Dataset as tf_dataset
 import os
+import requests
 
 # Environment variables
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
@@ -234,9 +235,15 @@ sequences = seq_data(pre_data)
 Seq = sequences.map(split_input)
 batched_dataset = batch_data(Seq)
 
+url = "https://github.com/UdhayaPrasad/CNLABS_INTERNSHIP/raw/main/CNLABS/epoch_200.keras"
+local_path = "epoch_200.keras"
 
+# Download the file
+r = requests.get(url)
+with open(local_path, 'wb') as f:
+    f.write(r.content)
 # Load model
-model = load_model('https://github.com/UdhayaPrasad/CNLABS_INTERNSHIP/blob/main/CNLABS/epoch_200.keras', compile=False)
+model = load_model(local_path,compile=False)
 
 # Example generation at startup
 #print(generate_text("Artificial Intelligence", gen_length=400, temperature=0.1))
